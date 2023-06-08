@@ -27,6 +27,8 @@ void main() {
       if (findName == nameList[i]) {
         print("score ${nameList[i]} = ${scoreList[i]}");
         break;
+      } else if (findName != nameList[i]) {
+        continue;
       } else {
         print("not found");
       }
