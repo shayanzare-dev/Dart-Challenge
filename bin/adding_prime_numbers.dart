@@ -10,7 +10,7 @@ int scrollCustomize(int input) {
   int sum = 0;
   for (int i = 1; i <= input; i++) {
     if (isPrime(i)) {
-      sum = i+sum;
+      sum = i + sum;
       print("$i = ${isPrime(i)}");
     }
   }
