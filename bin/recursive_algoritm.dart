@@ -1,16 +1,15 @@
-
 void main() {
-  List<int> list1 = [1, 2, 344, 54];
-  int i = 0;
-  arr(list1.length, i);
+  const List list1 = <int>[1, 23, 54, 5, 2, 76, 09];
+  peymayesh(list1.length - 1, list1, list1.length - list1.length + 0);
 }
 
-int arr(int listLenght, int i) {
-  List<int> list1 = [4, 2, 344, 54];
+int peymayesh(int listLenght, List list1, int i) {
   print(list1[i]);
-  if (listLenght == 1) {
-    return listLenght;
+  if (listLenght == 0) {
+    return 0;
+    // base case
   } else {
-    return arr(listLenght - 1, i + 1);
+    return peymayesh(listLenght - 1, list1, i + 1);
+    // recursive case
   }
-}
+} // recursive algorithm
