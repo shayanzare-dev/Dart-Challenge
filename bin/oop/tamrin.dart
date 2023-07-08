@@ -1,27 +1,21 @@
 void main() {
-  UserNormal userNormal = UserNormal(age: 23, favorite: 'gold');
+  Animal cow = Cow(name: 'shayan', color: 'white');
 }
 
-class UserNormal extends UserAdmin {
-  UserNormal({required int age, required String favorite})
-      : super(name: 'arman', lastName: 'zare', type: 'normal');
+abstract class Animal {
+  String? name;
+  String? color;
+
+  Animal({required this.name, required this.color});
+
+  void eat();
+}
+
+class Cow extends Animal {
+  Cow({super.name, super.color}) : super();
 
   @override
-  void activity() {
-    print('user normal $name and $lastName is activity');
-  }
-}
-
-class UserAdmin {
-  String? name;
-  String? lastName;
-  String? type;
-
-  UserAdmin({this.name, this.lastName, this.type}) {
-    print("instance");
-  }
-
-  void activity() {
-    print('$name and $lastName is activity');
+  void eat() {
+    print("$name is eating");
   }
 }
