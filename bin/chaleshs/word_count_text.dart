@@ -10,6 +10,6 @@ void main() {
     var count = textIndex.where((element) => element.length == i).length;
     if (count > 0) {
       print('$count ta $i harfi');
-    }
+  }
   }
 }
