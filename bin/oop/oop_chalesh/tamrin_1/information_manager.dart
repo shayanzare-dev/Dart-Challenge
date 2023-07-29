@@ -1,30 +1,27 @@
 import 'dart:io';
 
 import 'app_data_base.dart';
-import 'interface_class.dart';
 
 class GetInformation {
-  Information? information;
+  AppDataBase? appDataBase;
 
   void getEmail() {
     print('email:');
-    String email = stdin.readLineSync()!;
-    AppDataBase appDataBase = AppDataBase(emailAddress: email);
-    information?.getEmail(appDataBase);
+    String? email = stdin.readLineSync()!;
+    appDataBase?.emailAddress = email;
   }
 
   void getName() {
     print('name:');
     String? name = stdin.readLineSync()!;
     AppDataBase appDataBase = AppDataBase(name: name);
-    information?.getName(appDataBase);
+//    information.getName(appDataBase.name);
   }
 
   void getPassword() {
     print('password:');
     int? password = int.tryParse(stdin.readLineSync()!);
     AppDataBase appDataBase = AppDataBase(password: password);
-    information?.getPassword(appDataBase);
+//    information.getPassword(appDataBase.password);
   }
 }
-// Singleton، Factory، Observer و Decorator

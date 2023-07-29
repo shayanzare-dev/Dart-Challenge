@@ -1,6 +1,6 @@
 class User{
   final int id;
-  final String name;
+   final String name;
  const User(this.id,this.name); // formal constructor
 }
 void main(){

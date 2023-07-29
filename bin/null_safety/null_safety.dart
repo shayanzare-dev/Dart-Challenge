@@ -10,3 +10,7 @@ void checkNull() {
   }
   // 3-
 }
+
+void nullItem() {
+ ////
+}
