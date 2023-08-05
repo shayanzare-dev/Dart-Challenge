@@ -52,7 +52,6 @@ class InMemoryProductRepository implements ProductRepository {
 
 class ProductManager {
   ProductRepository repository;
-
   ProductManager(this.repository);
 
   void addProduct() {
