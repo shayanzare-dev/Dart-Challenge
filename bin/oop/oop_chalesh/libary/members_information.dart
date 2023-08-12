@@ -8,7 +8,7 @@ class Members {
 
   const Members(this.name, this.phoneNumber, this.emailAddress);
 
-  factory Members.factory(
+  factory Members.create(
       {required String name,
       required int phoneNumber,
       required String emailAddress}) {

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 int? turnTime;
 int? turnNumber;
 int? hoursWork;
@@ -22,7 +21,7 @@ void getHospitalWatch() {
     hoursWork = endTime - startTime!;
     print("hours work = $hoursWork");
   } else {
-    print("ساعت مجاز کاری بین 1 تا 23 هست");
+    print("ساعت مجاز کاری بین 1 تا 24 هست");
   }
   getTurnTime(hoursWork!);
   getTurnNumber();

@@ -1,8 +1,8 @@
-import 'library.dart';
 import 'get_information.dart';
+import 'library.dart';
+
 void main() {
   Library library = Library();
-  GetInformation get = GetInformation(library);
-  get.add();
-  get.search();
+  GetInformation get = GetInformation.create(libraryParametr: library);
+  get.run();
 }

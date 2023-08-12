@@ -9,40 +9,40 @@ class Library extends LibraryRepository {
   List<Members> membersList = [];
 
   @override
-  void add(Book book, Members members) {
+  void addBook({required Book book}) {
     bookList.add(book);
+  }
+
+  @override
+  void addMembers({required Members members}) {
     membersList.add(members);
   }
 
   @override
-  void search(Book book, Members members) {
+  void editBook({required int index, required Book book}) {
     if (bookList.contains(book)) {
-      print('$book in list');
+      bookList[index] = book;
+    } else {
+      print('not found book');
     }
+  }
+
+  @override
+  void editMembers({required int index, required Members members}) {
     if (membersList.contains(members)) {
-      print('$members in list');
+      membersList[index] = members;
+    } else {
+      print('not found member');
     }
-  }
-
-  @override
-  void edit(int index, Book book, Members members) {
-    bookList[index] = book;
-    membersList[index] = members;
-  }
-
-  @override
-  void remove(
-      {required int index, required Book book, required Members members}) {
-    bookList.removeAt(index);
-    membersList.removeAt(index);
   }
 
   @override
   void lending(Book book, Members members) {
     if (bookList.contains(book) && membersList.contains(members)) {
+      bookList.remove(book);
       Members.broweddBooks.add(book);
     } else {
-      print('not found');
+      print('not found book or member');
     }
   }
 
@@ -50,6 +50,33 @@ class Library extends LibraryRepository {
   void receive(Book book, Members members) {
     if (Members.broweddBooks.contains(book)) {
       Members.broweddBooks.remove(book);
+      bookList.add(book);
+    }
+  }
+
+  @override
+  void removeBook({required Book book}) {
+    bookList.remove(book);
+  }
+
+  @override
+  void removeMembers({required Members members}) {
+    membersList.remove(members);
+  }
+
+  @override
+  void searchBook({required Book book}) {
+    if (bookList.contains(book)) {
+      print('found');
+    } else {
+      print('not found');
+    }
+  }
+
+  @override
+  void searchMembers({required Members members}) {
+    if (membersList.contains(members)) {
+      print('found');
     } else {
       print('not found');
     }

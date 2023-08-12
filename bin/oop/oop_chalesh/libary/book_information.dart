@@ -6,7 +6,7 @@ class Book{
 
   const Book(this.bookName, this.writer, this.yearPublic, this.price);
 
-  factory Book.factory(
+  factory Book.create(
       String bookName, String writer, String yearPublic, int price) {
     return Book(bookName, writer, yearPublic, price);
   }

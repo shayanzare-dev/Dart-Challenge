@@ -2,14 +2,21 @@ import 'book_information.dart';
 import 'members_information.dart';
 
 abstract class LibraryRepository {
-  void add(Book book, Members members);
+  void addMembers({required Members members});
 
-  void search(Book book, Members members);
+  void addBook({required Book book});
 
-  void edit(int index, Book book, Members members);
+  void searchMembers({required Members members});
 
-  void remove(
-      {required int index, required Book book, required Members members});
+  void searchBook({required Book book});
+
+  void editMembers({required int index, required Members members});
+
+  void editBook({required int index, required Book book});
+
+  void removeMembers({required Members members});
+
+  void removeBook({required Book book});
 
   //امانت دادن
   void lending(Book book, Members members);
