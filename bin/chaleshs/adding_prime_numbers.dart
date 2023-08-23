@@ -19,11 +19,11 @@ int scrollCustomize(int input) {
 }
 
 bool isPrime(int input) {
-  bool aval = true;
+  bool prime = true;
   for (int i = 2; i < input; i++) {
     if (input % i == 0) {
-      aval = false;
+      prime = false;
     }
   }
-  return aval;
+  return prime;
 }

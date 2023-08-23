@@ -2,7 +2,7 @@ import 'get_information.dart';
 import 'library.dart';
 
 void main() {
-  Library library = Library();
-  GetInformation get = GetInformation.create(libraryParametr: library);
+ final Library library = Library();
+ final GetInformation get = GetInformation.create(libraryParametr: library);
   get.run();
 }

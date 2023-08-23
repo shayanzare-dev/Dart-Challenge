@@ -3,7 +3,6 @@ abstract class Animal {
   String? name;
   void eat();
   void hello();
-  // interface
 }
 
 class Babaee implements Animal {
