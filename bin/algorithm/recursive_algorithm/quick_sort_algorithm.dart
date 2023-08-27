@@ -17,5 +17,5 @@ List<int> quickSort(List<int> array) {
 }
 
 void main() {
-  print(quickSort([10, 5, 2, 3]));
+  print(quickSort([10, 123, 5, 2, 3, 1]));
 }

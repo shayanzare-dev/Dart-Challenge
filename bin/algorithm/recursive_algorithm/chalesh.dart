@@ -1,6 +1,11 @@
 import 'dart:io';
 
-enum eunmScores { A, B, C, D }
+enum EunmScores {
+  A,
+  B,
+  C,
+  D;
+}
 
 void main() {
   // int? studentNumber = getStudentNumber();
@@ -62,17 +67,17 @@ int? getScoreNumber(int bookNumber) {
   }
 }
 
-eunmScores scoreCalculation(int scoreNumber) {
+EunmScores scoreCalculation(int scoreNumber) {
   while (true) {
     switch (scoreNumber) {
       case 4:
-        return eunmScores.A;
+        return EunmScores.A;
       case 3:
-        return eunmScores.B;
+        return EunmScores.B;
       case 2:
-        return eunmScores.C;
+        return EunmScores.C;
       case 1:
-        return eunmScores.D;
+        return EunmScores.D;
     }
   }
 }

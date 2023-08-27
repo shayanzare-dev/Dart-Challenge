@@ -1,25 +1,46 @@
-class Mom {
-  String? name;
-  String? colorEyes;
-  int? age;
-  Mom(this.name, this.colorEyes, this.age) {
-    print('instace is good');
+abstract class Library {
+  void showTables();
+
+  void miz();
+
+  void makhzan();
+}
+
+class Student implements Library {
+  @override
+  void makhzan() {
+    // TODO: implement makhzan
   }
-  void hello() {
-    print('hello $name');
+
+  @override
+  void miz() {
+    // TODO: implement miz
+  }
+
+  @override
+  void showTables() {
+    print('show tables');
   }
 }
 
-class Child extends Mom {
-  Child(String name, int age) : super(name, 'black', age);
+class Student2 implements Library {
   @override
-  void hello() {
-    super.hello();
-    print('hello $name');
+  void makhzan() {
+    // TODO: implement makhzan
   }
+
+  @override
+  void miz() {
+    // TODO: implement miz
+  }
+
+  @override
+  void showTables() {}
 }
+
+void show(Library library) => library.showTables();
 
 void main() {
-  Child child = Child('shayan', 17);
-  child.hello();
+  final Student student = Student();
+  show(student);
 }
