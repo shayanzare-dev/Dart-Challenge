@@ -1,46 +1,16 @@
-abstract class Library {
-  void showTables();
+class A {
+  final int a;
 
-  void miz();
+  void myMethod() => print(a);
 
-  void makhzan();
+  const A({this.a = 85});
 }
 
-class Student implements Library {
-  @override
-  void makhzan() {
-    // TODO: implement makhzan
-  }
-
-  @override
-  void miz() {
-    // TODO: implement miz
-  }
-
-  @override
-  void showTables() {
-    print('show tables');
-  }
+class B extends A {
+  const B({super.a});
 }
-
-class Student2 implements Library {
-  @override
-  void makhzan() {
-    // TODO: implement makhzan
-  }
-
-  @override
-  void miz() {
-    // TODO: implement miz
-  }
-
-  @override
-  void showTables() {}
-}
-
-void show(Library library) => library.showTables();
 
 void main() {
-  final Student student = Student();
-  show(student);
+  A test = B();
+  print(test.a);
 }

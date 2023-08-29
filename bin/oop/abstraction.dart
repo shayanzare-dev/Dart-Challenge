@@ -1,26 +1,46 @@
+abstract class Library {
+  void showTables();
 
-abstract class Animal {
-  String? name;
-  void eat();
-  void hello();
+  void miz();
+
+  void makhzan();
 }
 
-class Babaee implements Animal {
+class Student implements Library {
+  @override
+  void makhzan() {
+    // TODO: implement makhzan
+  }
 
   @override
-  void eat() {
-    print('babaee is eating');
+  void miz() {
+    // TODO: implement miz
   }
+
   @override
-  void hello() {
-    print('hello');
+  void showTables() {
+    print('show tables');
   }
-  @override
-  String? name = 'shayan';
 }
+
+class Student2 implements Library {
+  @override
+  void makhzan() {
+    // TODO: implement makhzan
+  }
+
+  @override
+  void miz() {
+    // TODO: implement miz
+  }
+
+  @override
+  void showTables() {}
+}
+
+void show(Library library) => library.showTables();
 
 void main() {
-  Babaee babaee = Babaee();
-  babaee.eat();
-  babaee.hello();
+  final Student student = Student();
+  show(student);
 }

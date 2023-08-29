@@ -7,7 +7,6 @@ abstract class Animal {
 abstract class SwimAbleAnimal extends Animal{
   void swim();
 }
-
 abstract class FlyAbleAnimal extends Animal{
   void fly();
 }
