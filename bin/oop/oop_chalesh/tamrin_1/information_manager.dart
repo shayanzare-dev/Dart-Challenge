@@ -7,7 +7,7 @@ class GetInformation {
 
   void getEmail() {
     print('email:');
-    String? email = stdin.readLineSync()!;
+    String? email = stdin.readLineSync() ?? 'default@gmail.com]';
     appDataBase?.emailAddress = email;
   }
 
@@ -22,6 +22,6 @@ class GetInformation {
     print('password:');
     int? password = int.tryParse(stdin.readLineSync()!);
     AppDataBase appDataBase = AppDataBase(password: password);
-//    information.getPassword(appDataBase.password);
+//  information.getPassword(appDataBase.password);
   }
 }
