@@ -1,16 +1,15 @@
 import 'dart:io';
 
-class UserInformation {
-  String? name;
-  String? lastName;
-  String? imageUrl;
-  num wallet = 0;
-}
+class UserProfile {
+  String name = 'shayan';
+  String lastName = 'zare';
+  String imageUrl =
+      'https://cinemaetemad.ir/wp-content/uploads/2023/06/ilan-mask-780x470.jpg';
+ static num wallet = 0;
 
-extension RechargeWallet on UserInformation {
-  void chargeWallet() {
-    print('number:');
-    int? number = int.tryParse(stdin.readLineSync()!);
-    wallet = (wallet + number!);
+ static void chargeWallet() {
+    print('number charge:');
+    int? numberCharge = int.tryParse(stdin.readLineSync()!);
+    wallet = (wallet + numberCharge!);
   }
 }

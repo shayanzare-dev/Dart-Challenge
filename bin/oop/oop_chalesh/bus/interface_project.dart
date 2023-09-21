@@ -1,7 +1,7 @@
 import 'bus.dart';
 import 'travel_description.dart';
 
-abstract class InterfaceProject {
+mixin InterfaceProject {
   void insertBus(Bus bus);
 
   void travelDefinition(TravelDescription travelDescription);

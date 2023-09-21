@@ -1,39 +1,38 @@
-
-enum MenuEnum {
+enum Menu {
   insertBus(1, 'insertBus'),
   travelDefinition(2, 'travelDefinition'),
   ticketBook(3, 'ticketBook'),
   buyTicket(4, 'buyTicket'),
-  travelPreview(5,'travelPreview'),
-  cancelTicket(6,'cancelTicket'),
-  reporting(7,'reporting'),
-  exit(8,'exit');
+  travelPreview(5, 'travelPreview'),
+  cancelTicket(6, 'cancelTicket'),
+  reporting(7, 'reporting'),
+  exit(8, 'exit');
 
   final int value;
   final String title;
 
-  const MenuEnum(this.value, this.title);
+  const Menu(this.value, this.title);
 
-factory MenuEnum.getValue({required int value}) {
+  factory Menu.getValue({required int value}) {
     switch (value) {
       case 1:
-        return MenuEnum.insertBus;
+        return Menu.insertBus;
       case 2:
-        return MenuEnum.travelDefinition;
+        return Menu.travelDefinition;
       case 3:
-        return MenuEnum.ticketBook;
+        return Menu.ticketBook;
       case 4:
-        return MenuEnum.buyTicket;
+        return Menu.buyTicket;
       case 5:
-        return MenuEnum.travelPreview;
+        return Menu.travelPreview;
       case 6:
-        return MenuEnum.cancelTicket;
+        return Menu.cancelTicket;
       case 7:
-        return MenuEnum.reporting;
+        return Menu.reporting;
       case 8:
-        return MenuEnum.exit;
+        return Menu.exit;
       default:
-        return MenuEnum.insertBus;
+        return Menu.insertBus;
     }
   }
 }

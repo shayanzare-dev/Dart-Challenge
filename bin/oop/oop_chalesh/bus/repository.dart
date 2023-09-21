@@ -2,12 +2,12 @@ import 'bus.dart';
 import 'interface_project.dart';
 import 'travel_description.dart';
 
-class Repository implements InterfaceProject {
-  List<Bus> busList;
+class Repository with InterfaceProject {
+  late List<Bus> busList;
 
-  List<TravelDescription> descriptionList;
+  late Map<int, TravelDescription> descriptionList;
 
-  Repository(this.busList, this.descriptionList);
+  Repository({required this.busList, required this.descriptionList});
 
   @override
   void insertBus(Bus bus) {
@@ -16,7 +16,7 @@ class Repository implements InterfaceProject {
 
   @override
   void travelDefinition(TravelDescription travelDescription) {
-    descriptionList.add(travelDescription);
+    descriptionList[descriptionList.length] = travelDescription;
   }
 
   @override
@@ -47,12 +47,12 @@ class Repository implements InterfaceProject {
   @override
   void travelPreview() {
     for (int i = 0; i < descriptionList.length; i++) {
-      print('''${i + 1}
-      ['origin:${descriptionList[i].origin}'
-      'origin:${descriptionList[i].destination}'
-      'time:${descriptionList[i].time}'
-      'name:${descriptionList[i].busName}'
-      'price:${descriptionList[i].price}']
+      print(''' 
+      ${i + 1}-['origin:${descriptionList[i]?.origin}'
+      'origin:${descriptionList[i]?.destination}'
+      'time:${descriptionList[i]?.time}'
+      'name:${descriptionList[i]?.busName}'
+      'price:${descriptionList[i]?.price}']
     ''');
     }
   }
