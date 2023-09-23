@@ -1,7 +1,8 @@
 import 'dart:io';
 
-import 'user_profile.dart';
-
-extension RechargeWallet on UserProfile {
-
+extension Input on int {
+  void input() {
+   print('input:');
+    int? input = int.tryParse(stdin.readLineSync()!);
+  }
 }

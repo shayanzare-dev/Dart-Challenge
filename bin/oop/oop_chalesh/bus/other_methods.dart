@@ -63,7 +63,7 @@ void showCitys() {
       7-fars , 8-khorasan , 9-esfahan , 10-kordestan''');
 }
 
-void showMenu() {
+void _showMenu() {
   print('''
   1-insert bus , 2-travelDefinition , 3-ticketBook
   4-buyTicket , 5-travelPreview , 6-cancelTicket
@@ -72,7 +72,7 @@ void showMenu() {
 
 void getMenu(GetInformation getInformation) {
   while (true) {
-    showMenu();
+    _showMenu();
     print('menu:');
     int? number = int.tryParse(stdin.readLineSync()!);
     final Menu menu = Menu.getValue(value: number!);
@@ -106,8 +106,7 @@ void getMenu(GetInformation getInformation) {
         break;
 
       case Menu.exit:
-        getInformation.exit();
-        break;
+        return;
       default:
         print('please valid number(1-8)');
     }
