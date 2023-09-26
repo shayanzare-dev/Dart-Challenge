@@ -14,7 +14,7 @@ abstract class InterfaceProject {
 
   void cancelTicket();
 
-  void reporting();
+  void reporting({required Bus bus, required num pricePur});
 
   void exit();
 }

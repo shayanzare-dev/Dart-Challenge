@@ -20,29 +20,12 @@ class Repository implements InterfaceProject {
   }
 
   @override
-  void buyTicket() {
-    // TODO: implement buyTicket
-  }
-
-  @override
-  void cancelTicket() {
-    // TODO: implement cancelTicket
-  }
-
-  @override
-  void exit() {
-    // TODO: implement exit
-  }
-
-  @override
-  void reporting() {
-    // TODO: implement reporting
-  }
-
-  @override
   void ticketBook() {
     // TODO: implement ticketBook
   }
+
+  @override
+  void buyTicket() {}
 
   @override
   void travelPreview() {
@@ -55,5 +38,20 @@ class Repository implements InterfaceProject {
       'price:${descriptionList[i]?.price}']
     ''');
     }
+  }
+
+  @override
+  void cancelTicket() {
+    // TODO: implement cancelTicket
+  }
+
+  @override
+  void reporting({required Bus bus, required num pricePur}) {
+    bus.finalPrice += pricePur;
+  }
+
+  @override
+  void exit() {
+    // TODO: implement exit
   }
 }

@@ -64,31 +64,6 @@ class GetInformation {
   }
 
   void ticketBook() {
-    tickets(type: 'reserve');
-  }
-
-  void buyTicket() {
-    tickets(type: 'buy');
-  }
-
-  void travelPreview() {
-    repository.travelPreview();
-  }
-
-  void cancelTicket() {
-    print('insert (1-cancel reserve ticket , 2-cancel buy ticket)');
-    int? number = int.tryParse(stdin.readLineSync()!);
-    if (number == 1) {
-      tickets(type: 'cancelReserveTicket');
-    } else {
-      tickets(type: 'cancelBuy');
-    }
-  }
-
-  void reporting() {}
-
-  void tickets({required String type}) {
-    print(passengerVipNumbers);
     repository.travelPreview();
     print('which one (valid = 1 ta ${repository.descriptionList.length}):');
     int? number = int.tryParse(stdin.readLineSync()!);
@@ -100,11 +75,13 @@ class GetInformation {
       if (!passengerVipNumbers.contains(numberSeats)) {
         if (UserProfile.wallet >=
             repository.descriptionList[number - 1]!.price) {
-          Discount discount = Discount.create(
+          passengerVipNumbers.add(numberSeats!);
+          Discount discount = Discount.reserve(
               wallet: UserProfile.wallet,
-              type: type,
               price: repository.descriptionList[number - 1]!.price);
           UserProfile.wallet = discount.wallet;
+          repository.reporting(
+              bus: repository.busList[number - 1], pricePur: discount.disCount);
           print('inventory now = ${discount.wallet}');
         } else {
           print('not enough money , please charge the wallet');
@@ -121,11 +98,12 @@ class GetInformation {
         if (UserProfile.wallet >
             repository.descriptionList[number - 1]!.price) {
           passengerNormalNumbers.add(numberSeats!);
-          Discount discount = Discount.create(
+          Discount discount = Discount.reserve(
               wallet: UserProfile.wallet,
-              type: type,
               price: repository.descriptionList[number - 1]!.price);
           UserProfile.wallet = discount.wallet;
+          repository.reporting(
+              bus: repository.busList[number - 1], pricePur: discount.disCount);
           print('inventory now = ${discount.wallet}');
         } else {
           print('not enough money , please charge the wallet');
@@ -135,5 +113,154 @@ class GetInformation {
         print('this seats is full , please choose another one');
       }
     }
+  }
+
+  void buyTicket() {
+    repository.travelPreview();
+    print('which one (valid = 1 ta ${repository.descriptionList.length}):');
+    int? number = int.tryParse(stdin.readLineSync()!);
+    if (repository.descriptionList.containsKey(number! - 1) &&
+        repository.descriptionList[number - 1]?.busType == 'vip') {
+      vipSeatCounts(seatCount: bus!.seatCount!);
+      print('number seats:');
+      int? numberSeats = int.tryParse(stdin.readLineSync()!);
+      if (!passengerVipNumbers.contains(numberSeats)) {
+        if (UserProfile.wallet >=
+            repository.descriptionList[number - 1]!.price) {
+          passengerVipNumbers.add(numberSeats!);
+          Discount discount = Discount.buy(
+              wallet: UserProfile.wallet,
+              price: repository.descriptionList[number - 1]!.price);
+          UserProfile.wallet = discount.wallet;
+          repository.reporting(
+              bus: repository.busList[number - 1], pricePur: discount.disCount);
+          print('inventory now = ${discount.wallet}');
+        } else {
+          print('not enough money , please charge the wallet');
+          UserProfile.chargeWallet();
+        }
+      } else {
+        print('this seats is full , please choose another one');
+      }
+    } else {
+      normalSeatCounts(seatCount: bus!.seatCount!);
+      print('number seats:');
+      int? numberSeats = int.tryParse(stdin.readLineSync()!);
+      if (!passengerNormalNumbers.contains(numberSeats)) {
+        if (UserProfile.wallet >
+            repository.descriptionList[number - 1]!.price) {
+          passengerNormalNumbers.add(numberSeats!);
+          Discount discount = Discount.buy(
+              wallet: UserProfile.wallet,
+              price: repository.descriptionList[number - 1]!.price);
+          UserProfile.wallet = discount.wallet;
+          repository.reporting(
+              bus: repository.busList[number - 1], pricePur: discount.disCount);
+          print('inventory now = ${discount.wallet}');
+        } else {
+          print('not enough money , please charge the wallet');
+          UserProfile.chargeWallet();
+        }
+      } else {
+        print('this seats is full , please choose another one');
+      }
+    }
+  }
+
+  void travelPreview() {
+    repository.travelPreview();
+  }
+
+  void cancelTicket() {
+    print('insert (1-cancel reserve ticket , 2-cancel buy ticket)');
+    int? number = int.tryParse(stdin.readLineSync()!);
+    if (number == 1) {
+      repository.travelPreview();
+      print('which one (valid = 1 ta ${repository.descriptionList.length}):');
+      int? number = int.tryParse(stdin.readLineSync()!);
+      if (repository.descriptionList.containsKey(number! - 1) &&
+          repository.descriptionList[number - 1]?.busType == 'vip') {
+        vipSeatCounts(seatCount: bus!.seatCount!);
+        print('number seats:');
+        int? numberSeats = int.tryParse(stdin.readLineSync()!);
+        if (passengerVipNumbers.contains(numberSeats)) {
+          passengerVipNumbers.remove(numberSeats);
+          Discount discount = Discount.cancelReserveTicket(
+              wallet: UserProfile.wallet,
+              price: repository.descriptionList[number - 1]!.price);
+          UserProfile.wallet = discount.wallet;
+          repository.reporting(
+              bus: repository.busList[number - 1], pricePur: discount.disCount);
+          print('inventory now = ${discount.wallet}');
+        } else {
+          print('This chair not found');
+        }
+      } else {
+        normalSeatCounts(seatCount: bus!.seatCount!);
+        print('number seats:');
+        int? numberSeats = int.tryParse(stdin.readLineSync()!);
+        if (passengerNormalNumbers.contains(numberSeats)) {
+          passengerNormalNumbers.remove(numberSeats);
+          Discount discount = Discount.cancelReserveTicket(
+              wallet: UserProfile.wallet,
+              price: repository.descriptionList[number - 1]!.price);
+          UserProfile.wallet = discount.wallet;
+          repository.reporting(
+              bus: repository.busList[number - 1], pricePur: discount.disCount);
+          print('inventory now = ${discount.wallet}');
+        } else {
+          print('This chair not found');
+        }
+      }
+    } else if (number == 2) {
+      repository.travelPreview();
+      print('which one (valid = 1 ta ${repository.descriptionList.length}):');
+      int? number = int.tryParse(stdin.readLineSync()!);
+      if (repository.descriptionList.containsKey(number! - 1) &&
+          repository.descriptionList[number - 1]?.busType == 'vip') {
+        vipSeatCounts(seatCount: bus!.seatCount!);
+        print('number seats:');
+        int? numberSeats = int.tryParse(stdin.readLineSync()!);
+        if (passengerVipNumbers.contains(numberSeats)) {
+          passengerVipNumbers.remove(numberSeats);
+          Discount discount = Discount.cancelBuy(
+              wallet: UserProfile.wallet,
+              price: repository.descriptionList[number - 1]!.price);
+          UserProfile.wallet = discount.wallet;
+          repository.reporting(
+              bus: repository.busList[number - 1], pricePur: discount.disCount);
+          print('inventory now = ${discount.wallet}');
+        } else {
+          print('This chair not found');
+        }
+      } else {
+        normalSeatCounts(seatCount: bus!.seatCount!);
+        print('number seats:');
+        int? numberSeats = int.tryParse(stdin.readLineSync()!);
+        if (passengerNormalNumbers.contains(numberSeats)) {
+          passengerNormalNumbers.remove(numberSeats);
+          Discount discount = Discount.cancelBuy(
+              wallet: UserProfile.wallet,
+              price: repository.descriptionList[number - 1]!.price);
+          UserProfile.wallet = discount.wallet;
+          repository.reporting(
+              bus: repository.busList[number - 1], pricePur: discount.disCount);
+          print('inventory now = ${discount.wallet}');
+        } else {
+          print('This chair not found');
+        }
+      }
+    } else {
+      print('please valid number(1-2)');
+    }
+  }
+
+  void reporting() {
+    for (int i = 0; i < repository.busList.length; i++) {
+      print('${i + 1} = ${repository.busList[i].name}');
+    }
+    print('which one:');
+    int? input = int.tryParse(stdin.readLineSync()!);
+    print(repository.busList[input! - 1].finalPrice);
   }
 }
