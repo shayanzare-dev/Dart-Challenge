@@ -5,7 +5,7 @@ import 'enums/menu.dart';
 import 'get_information.dart';
 
 void normalSeatCounts({required int seatCount}) {
-  for (int i = 1; i <= seatCount; i = i + 4) {
+  for (int i = 1; i < seatCount; i = i + 4) {
     if (i == 25) {
       print('[$i] [${i + 1}]');
       i = 27;

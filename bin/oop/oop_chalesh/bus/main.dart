@@ -1,8 +1,9 @@
 import 'get_information.dart';
-import 'repository.dart';
 import 'other_methods.dart';
+import 'repository.dart';
+
 void main() {
-  Repository repository = Repository(busList: [], descriptionList: {});
-  GetInformation getInformation = GetInformation(repository);
+  final Repository repository = Repository(busList: [], descriptionList: {});
+  final GetInformation getInformation = GetInformation(repository);
   getMenu(getInformation);
 }

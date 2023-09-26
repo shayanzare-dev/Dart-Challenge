@@ -2,7 +2,6 @@
 class Discount {
   num disCount = 0;
   num wallet = 0;
-
   factory Discount.create(
       {required num wallet, required String type, required num price}) {
     if (type == 'buy') {

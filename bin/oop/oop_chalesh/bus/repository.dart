@@ -2,7 +2,7 @@ import 'bus.dart';
 import 'interface_project.dart';
 import 'travel_description.dart';
 
-class Repository with InterfaceProject {
+class Repository implements InterfaceProject {
   late List<Bus> busList;
 
   late Map<int, TravelDescription> descriptionList;

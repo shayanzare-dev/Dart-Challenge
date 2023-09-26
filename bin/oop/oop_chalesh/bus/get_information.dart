@@ -65,56 +65,6 @@ class GetInformation {
 
   void ticketBook() {
     tickets(type: 'reserve');
-    //   print(UserProfile.wallet);
-    //   repository.travelPreview();
-    //   print('which one (valid = 1 ta ${repository.descriptionList.length}):');
-    //   int? number = int.tryParse(stdin.readLineSync()!);
-    //   if (repository.descriptionList.containsKey(number! - 1) &&
-    //       repository.descriptionList[number - 1]?.busType == 'vip') {
-    //     vipSeatCounts(seatCount: bus!.seatCount!);
-    //     print('number seats:');
-    //     int? numberSeats = int.tryParse(stdin.readLineSync()!);
-    //     if (!passengerVipNumbers.contains(numberSeats)) {
-    //       if (UserProfile.wallet >=
-    //           repository.descriptionList[number - 1]!.price) {
-    //         passengerVipNumbers.add(numberSeats!);
-    //         if (type == 'reserve') {
-    //           Discount.reserve(
-    //               price: repository.descriptionList[number - 1]!.price);
-    //           UserProfile.wallet -= Discount.disCount;
-    //         } else if (type == 'buy') {
-    //           UserProfile.wallet -= repository.descriptionList[number - 1]!.price;
-    //         }
-    //       } else {
-    //         print('not enough money , please charge the wallet');
-    //         UserProfile.chargeWallet();
-    //       }
-    //     } else {
-    //       print('this seats is full , please choose another one');
-    //     }
-    //   } else {
-    //     normalSeatCounts(seatCount: bus!.seatCount!);
-    //     print('number seats:');
-    //     int? numberSeats = int.tryParse(stdin.readLineSync()!);
-    //     if (!passengerNormalNumbers.contains(numberSeats)) {
-    //       if (UserProfile.wallet >
-    //           repository.descriptionList[number - 1]!.price) {
-    //         passengerNormalNumbers.add(numberSeats!);
-    //         if (type == 'reserve') {
-    //           Discount.reserve(
-    //               price: repository.descriptionList[number - 1]!.price);
-    //           UserProfile.wallet -= Discount.disCount;
-    //         } else if (type == 'buy') {
-    //           UserProfile.wallet -= repository.descriptionList[number - 1]!.price;
-    //         }
-    //       } else {
-    //         print('not enough money , please charge the wallet');
-    //         UserProfile.chargeWallet();
-    //       }
-    //     } else {
-    //       print('this seats is full , please choose another one');
-    //     }
-    //   }
   }
 
   void buyTicket() {
@@ -138,6 +88,7 @@ class GetInformation {
   void reporting() {}
 
   void tickets({required String type}) {
+    print(passengerVipNumbers);
     repository.travelPreview();
     print('which one (valid = 1 ta ${repository.descriptionList.length}):');
     int? number = int.tryParse(stdin.readLineSync()!);
@@ -149,7 +100,6 @@ class GetInformation {
       if (!passengerVipNumbers.contains(numberSeats)) {
         if (UserProfile.wallet >=
             repository.descriptionList[number - 1]!.price) {
-          passengerVipNumbers.add(numberSeats!);
           Discount discount = Discount.create(
               wallet: UserProfile.wallet,
               type: type,
