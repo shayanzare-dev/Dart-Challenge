@@ -1,2 +1,9 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+
+## Usage
+
+TODO: Go to the Bin folder and use it.
+
+```dart
+const language = 'dart';
+```
+
