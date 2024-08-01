@@ -10,10 +10,7 @@ class Company {
   int? inventoryCompany;
   Map<String, List<dynamic>>? helpListCompany;
 
-  Company(
-      {required this.companyName,
-      required this.inventoryCompany,
-      required this.helpListCompany});
+  Company({required this.companyName,required this.inventoryCompany,required this.helpListCompany});
 
   void getInformation() {
     print('helper name:');

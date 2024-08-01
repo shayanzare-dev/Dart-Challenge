@@ -15,7 +15,3 @@ List<int> quickSort(List<int> array) {
     return quickSort(less) + [pivot] + quickSort(greater);
   }
 }
-
-void main() {
-  print(quickSort([10, 123, 5, 2, 3, 1]));
-}

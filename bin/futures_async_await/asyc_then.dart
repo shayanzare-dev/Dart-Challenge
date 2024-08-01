@@ -1,5 +1,5 @@
 void main() {
-  a().then((value) => print('a is finished'));
+  a();
   b().then((value) {
     print('b is finished');
     return c();

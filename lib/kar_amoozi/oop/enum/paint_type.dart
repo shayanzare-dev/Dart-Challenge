@@ -1,0 +1,4 @@
+enum PaintType {
+  pelastic,
+  roghan;
+}

@@ -2,5 +2,12 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/kar_amoozi/working_with_dart" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/kar_amoozi/working_with_dart/student-app" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/kar_amoozi/working_with_dart/student-app/test_taav" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/kar_amoozi/working_with_git" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/kar_amoozi/working_with_git/BusTicketReservation.TaavSystem" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/kar_amoozi/working_with_git/student-app" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/kar_amoozi/working_with_git/student-app/test_taav" vcs="Git" />
   </component>
 </project>

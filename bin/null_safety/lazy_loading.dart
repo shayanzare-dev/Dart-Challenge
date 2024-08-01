@@ -10,6 +10,6 @@ class InformationUser {
 
 void main(List<String> arguments) {
   InformationUser informationUser = InformationUser();
-  informationUser.value;
+ informationUser.value;
   // الان تابع calculation مقدار دهی میشود چون صداش زدیم و همراه با فراخوانی شی مقدار دهی نشد.
 }

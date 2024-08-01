@@ -1,17 +1,9 @@
-base class{
-  
-}
 void main() {
-
-  List<int> list = [2, 53, 12];
-  int? sum;
   try {
-    sum = sum! + list[0];
-  } catch (e) {
-    print(e);
-  } finally {
-    print('test');
+    var a = 10 ~/ 0;
+  } on IntegerDivisionByZeroException {
+    print('this error is = $IntegerDivisionByZeroException');
   }
 
-  print('object');
+  print('continue code');
 }

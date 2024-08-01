@@ -1,6 +1,6 @@
 import 'dart:io';
 
-enum EunmScores {
+enum EnumScores {
   A,
   B,
   C,
@@ -36,7 +36,7 @@ int? getBookNumber(int studentNumber) {
     //  base case
   } else {
     return getBookNumber(studentNumber - 1);
-    //  recursive cas
+    //  recursive case
   }
 }
 
@@ -67,17 +67,17 @@ int? getScoreNumber(int bookNumber) {
   }
 }
 
-EunmScores scoreCalculation(int scoreNumber) {
+EnumScores scoreCalculation(int scoreNumber) {
   while (true) {
     switch (scoreNumber) {
       case 4:
-        return EunmScores.A;
+        return EnumScores.A;
       case 3:
-        return EunmScores.B;
+        return EnumScores.B;
       case 2:
-        return EunmScores.C;
+        return EnumScores.C;
       case 1:
-        return EunmScores.D;
+        return EnumScores.D;
     }
   }
 }
