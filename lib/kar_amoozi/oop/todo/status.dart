@@ -1,5 +1,5 @@
 class Status {
-  String? status;
+  String status;
 
   void doneStatus() => status = 'done';
 

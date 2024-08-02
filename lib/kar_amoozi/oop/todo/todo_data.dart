@@ -23,8 +23,10 @@ class TodoData {
     showTodosList();
     final int selectedTodo = safeGetNumber(
         printValue: 'which one?:(valid number 1 ta ${toDoList.length})');
-    Status().doneStatus();
-    toDoList[selectedTodo - 1].status = Status(status: 'done');
+
+    final Status newStatus = Status();
+    newStatus.doneStatus();
+    toDoList[selectedTodo - 1].status = newStatus;
   }
 
   static void removeOneTodo() {

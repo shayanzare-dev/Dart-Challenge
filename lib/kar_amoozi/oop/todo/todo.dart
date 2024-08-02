@@ -4,10 +4,9 @@ import 'package:project/kar_amoozi/oop/todo/status.dart';
 class Todo {
   final String title;
   final String description;
-   Status status;
+  Status status;
 
-   Todo(
-      {required this.title, required this.description, required this.status});
+  Todo({required this.title, required this.description, required this.status});
 
   static Todo getTodoData() {
     String title = safeStringGet(value: 'title');
