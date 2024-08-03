@@ -11,7 +11,7 @@ enum Vehicle {
   const Vehicle({required this.code, required this.description});
 
   int compare() {
-    int? max;
+    int max;
     if (Vehicle.benz.code > Vehicle.kmc.code &&
         Vehicle.benz.code > Vehicle.porsche.code) {
       max = Vehicle.benz.code;

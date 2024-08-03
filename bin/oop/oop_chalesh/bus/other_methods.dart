@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'enums/iran_citys.dart';
-import 'enums/menu.dart';
+import '../../../../lib/kar_amoozi/oop/enum/menu.dart';
 import 'get_information.dart';
 
 void normalSeatCounts({required int seatCount}) {

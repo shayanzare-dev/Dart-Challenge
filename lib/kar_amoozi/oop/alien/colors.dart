@@ -3,8 +3,8 @@ enum SkinColors {
   brown('brownie', 2),
   blackRed('black red', 3);
 
-  final String name;
+  final String value;
   final int id;
 
-  const SkinColors(this.name, this.id);
+  const SkinColors(this.value, this.id);
 }

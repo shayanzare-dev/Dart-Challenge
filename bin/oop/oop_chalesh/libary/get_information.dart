@@ -5,7 +5,7 @@ import 'library.dart';
 import 'members_information.dart';
 
 class GetInformation {
-  Library? library;
+  Library library;
 
   GetInformation(this.library);
 
@@ -27,7 +27,7 @@ class GetInformation {
           name: name,
           phoneNumber: phoneNumber ?? 0,
           emailAddress: emailAddress);
-      library?.addMembers(members: members);
+      library.addMembers(members: members);
     } else if (input == 2) {
       print('book Name:');
       String bookName = stdin.readLineSync() ?? '';
@@ -38,7 +38,7 @@ class GetInformation {
       print('price:');
       int? price = int.tryParse(stdin.readLineSync() ?? '');
       Book book = Book.create(bookName, writer, yearPublic, price!);
-      library?.addBook(book: book);
+      library.addBook(book: book);
     } else {
       print('please valid number 1&2');
     }
@@ -48,16 +48,16 @@ class GetInformation {
     print('1-search memberList , 2-search bookList');
     int? input = int.tryParse(stdin.readLineSync()!);
     if (input == 1) {
-      for (final item in library!.membersList) {
+      for (final item in library.membersList) {
         Members members =
             Members(item.name, item.phoneNumber, item.emailAddress);
-        library?.searchMembers(members: members);
+        library.searchMembers(members: members);
       }
     } else if (input == 2) {
-      for (final item in library!.bookList) {
+      for (final item in library.bookList) {
         Book book =
             Book(item.bookName, item.writer, item.yearPublic, item.price);
-        library?.searchBook(book: book);
+        library.searchBook(book: book);
       }
     }
   }
@@ -94,7 +94,7 @@ price: ${item.price}
 ''');
       }
     } else if (input == 2) {
-      for (final item in library!.membersList) {
+      for (final item in library.membersList) {
         print('''name: ${item.name}
 phone number: ${item.phoneNumber}
 email address: ${item.emailAddress}''');

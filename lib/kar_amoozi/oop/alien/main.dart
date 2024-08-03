@@ -1,7 +1,7 @@
-import 'package:project/kar_amoozi/oop/alien/alien.dart';
-import 'package:project/kar_amoozi/oop/alien/colors.dart';
-import 'package:project/kar_amoozi/oop/alien/martian_alien.dart';
-import 'package:project/kar_amoozi/oop/alien/saturn_alien.dart';
+import 'alien.dart';
+import 'colors.dart';
+import 'martian_alien.dart';
+import 'saturn_alien.dart';
 
 void main() {
   final Alien martinAlien = MartienAlien(
@@ -21,7 +21,7 @@ void main() {
       code: 58);
 
   final Alien saturnAlienPro = SaturnAlien.proSaturnAlien();
-  final Alien martinAlienPro = SaturnAlien.proSaturnAlien();
+  final Alien martinAlienPro = MartienAlien.proMartinAlien();
 
   martinAlien.run();
   saturnAlien.run();

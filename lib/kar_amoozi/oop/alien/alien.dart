@@ -9,13 +9,13 @@ abstract class Alien {
   final SkinColors skinColor;
   final Movement typeOfMovement;
 
-  int get secretCode => _secretCode;
+  void set secretCode(int code) => _secretCode = code;
 
   Alien(
       {required this.eyesCount,
       required this.toothCount,
       required this.legCount,
-      required int code,
+      required code,
       required this.skinColor,
       required this.typeOfMovement})
       : this._secretCode = code;

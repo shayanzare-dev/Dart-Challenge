@@ -8,7 +8,7 @@ class Test {
 
   void start() {
     Future.delayed(Duration(seconds: 4), () {
-      testFunction;
+      testFunction.call();
     });
   }
 }

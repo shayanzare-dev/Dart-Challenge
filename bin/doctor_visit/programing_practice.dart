@@ -4,7 +4,7 @@ import 'dart:io';
 
 List<int> fullTimes = [];
 List<int> emptyTimes = [];
-WeekOfDays? resultDay = null;
+daysOfWeek? resultDay = null;
 
 void main() {
   print('start time');
@@ -33,22 +33,22 @@ int getNumbersAppointment() {
   return patientAppointment!;
 }
 
-WeekOfDays? calculateDaysVisit(
+daysOfWeek? calculateDaysVisit(
     {required int numbers, required double workingTime}) {
   if (numbers <= workingTime) {
-    resultDay = WeekOfDays.today;
+    resultDay = daysOfWeek.today;
   } else if (numbers > workingTime) {
     var a1 = numbers - workingTime;
     if (a1 <= workingTime) {
-      resultDay = WeekOfDays.tomorrow;
+      resultDay = daysOfWeek.tomorrow;
     } else if (a1 > workingTime) {
       a1 = a1 - workingTime;
       if (a1 <= workingTime) {
-        resultDay = WeekOfDays.afterTomorrow;
+        resultDay = daysOfWeek.afterTomorrow;
       } else if (a1 > workingTime) {
         a1 = a1 - workingTime;
         if (a1 <= workingTime) {
-          resultDay = WeekOfDays.threeMoreDays;
+          resultDay = daysOfWeek.threeMoreDays;
         }
       }
     }
@@ -62,7 +62,7 @@ void calculateTimeVisits(int anyVisitTime, int workingTime) {
   }
 }
 
-enum WeekOfDays {
+enum daysOfWeek {
   today,
   tomorrow,
   afterTomorrow,

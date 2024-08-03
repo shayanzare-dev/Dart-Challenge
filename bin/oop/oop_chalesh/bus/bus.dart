@@ -3,12 +3,12 @@ import 'normal_bus.dart';
 import 'vip_bus.dart';
 
 class Bus {
-  num finalPrice;
+  num finalPrice = 0;
   final String name;
   final TypeBus busType;
   final int? seatCount;
 
-   Bus(this.name, this.busType, this.seatCount, [this.finalPrice = 0]);
+  Bus(this.name, this.busType, this.seatCount);
 
   factory Bus.create({required String name, required int busType}) {
     if (busType == 1) {
