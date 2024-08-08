@@ -29,6 +29,4 @@ void main() {
 
   final Student student = Student(
       name: 'shayan zaree', id: 2, location: Location(title: 'tehran', id: 3));
-
-  student
 }
