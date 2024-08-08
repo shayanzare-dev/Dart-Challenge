@@ -11,6 +11,12 @@ class Semester {
 
   Semester({required this.id, required this.title});
 
+  void addStudentToCourse(
+      {required String name, required int id, required Location location}) {
+    final Student student = Student(name: name, id: id, location: location);
+    Course.students.add(student);
+  }
+
   void addCourse(
       {required int id,
       required int unitCount,
@@ -19,12 +25,6 @@ class Semester {
     final Course newCourse = Course.create(
         title: title, id: id, unitCount: unitCount, courseType: type);
     _courses.add(newCourse);
-  }
-
-  void addStudentToCourse(
-      {required String name, required int id, required Location location}) {
-    final Student student = Student(name: name, id: id, location: location);
-    Course.students.add(student);
   }
 
   @override

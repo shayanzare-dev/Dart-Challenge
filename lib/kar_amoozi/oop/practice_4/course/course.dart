@@ -10,17 +10,19 @@ class Course {
   final int unitCount;
   static final List<Student> students = [];
 
-  Course(
-      {required this.title,
-      required this.id,
-      required this.unitCount,
-      required this.type});
+  Course({
+    required this.
+    required this.title,
+    required this.id,
+    required this.unitCount,
+    required this.type}) {
+    students.add(value);
+  }
 
-  factory Course.create(
-      {required String title,
-      required int id,
-      required int unitCount,
-      required CourseType courseType}) {
+  factory Course.create({required String title,
+    required int id,
+    required int unitCount,
+    required CourseType courseType}) {
     if (courseType == CourseType.public) {
       return PublicCourse(title: title, id: id, unitCount: unitCount);
     } else {
