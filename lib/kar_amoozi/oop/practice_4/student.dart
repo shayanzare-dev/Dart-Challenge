@@ -5,7 +5,7 @@ class Student {
   final int id;
   final Location location;
 
-  Student({required this.name, required this.id, required this.location});
+  const Student({required this.name, required this.id, required this.location});
 
   @override
   String toString() {
