@@ -1,9 +1,5 @@
 import 'dart:math';
 
-void main() {
-  MemberShipData.generateMemberShipCode();
-}
-
 class MemberShipData {
   static final List<int> memberShipCodes = [];
 

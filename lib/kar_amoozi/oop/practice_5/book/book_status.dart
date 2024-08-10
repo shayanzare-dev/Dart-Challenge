@@ -1,7 +1,16 @@
 class BookStatus {
-  String status = 'available';
+  String _status = 'available';
 
-  void lending() => status = 'loaned';
+  String get status => _status;
 
-  void returns() => status = 'available';
+  void lending() => _status = 'loaned';
+
+  void returns() => _status = 'available';
+
+  BookStatus();
+
+  @override
+  String toString() {
+    return 'BookStatus{_status: $_status}';
+  }
 }

@@ -1,5 +1,4 @@
-
-import 'author.dart';
+import '../practice_5/book/author.dart';
 
 class Book {
   static int bookCount = 0;
@@ -12,7 +11,8 @@ class Book {
   Book({
     required this.title,
     required this.author,
-  }) : isInLibrary = true, code = bookCount++;
+  })  : isInLibrary = true,
+        code = bookCount++;
 
   @override
   String toString() {
