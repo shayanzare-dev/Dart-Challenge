@@ -1,3 +1,5 @@
+import 'package:project/kar_amoozi/oop/practice_4/course/course.dart';
+
 import 'course/course_type.dart';
 import 'location.dart';
 import 'semester.dart';
@@ -29,8 +31,26 @@ class University {
 
   void addStudent(
       {required String name, required int id, required Location location}) {
-    final Student student = Student(name: name, id: id, location: location);
-    _students.add(student);
+    _students.add(Student(name: name, id: id, location: location));
+  }
+
+  void addStudentToCourseById(
+      {required int semesterId,
+      required int studentId,
+      required int courseId}) {
+    final int semesterIndex =
+        _semesters.indexWhere((element) => element.id == semesterId);
+    final int studentIndex =
+        _students.indexWhere((element) => element.id == studentId);
+
+    final bool semesterFound = semesterIndex != -1;
+
+    final bool studentFound = studentIndex != -1;
+
+    if (semesterFound && studentFound) {
+      final Course course = _semesters[semesterIndex].courses[courseId];
+      // todo(shayan zare): please implement with index where
+    }
   }
 
   void addCourseToSemesterById({

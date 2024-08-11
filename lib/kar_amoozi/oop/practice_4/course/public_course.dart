@@ -1,8 +1,8 @@
 import 'course.dart';
 import 'course_type.dart';
 
-class PublicCourse extends Course {
-  PublicCourse(
+class GeneralCourse extends Course {
+  GeneralCourse(
       {required super.title,
       required super.id,
       required super.unitCount,

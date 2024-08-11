@@ -8,7 +8,7 @@ class Member {
   static int count = 0;
 
   final String fullName;
-  final int memberShipCode;
+  final int _memberShipCode;
   final int id;
   int limitedBookLending;
   final List<Book> lendingBook = [];
@@ -17,7 +17,11 @@ class Member {
     required this.fullName,
   })  : limitedBookLending = 0,
         id = count++,
-        memberShipCode = MemberShipData.generateMemberShipCode();
+        _memberShipCode = MemberShipData.generateMemberShipCode();
+
+  String get obfuscated {
+    return '*' * (_memberShipCode.toString().split('').length);
+  }
 
   void lendBook() {
     if (limitedBookLending < 5) {
@@ -42,6 +46,6 @@ class Member {
 
   @override
   String toString() {
-    return 'Member{fullName: $fullName, memberShipCode: $memberShipCode, id: $id, limitedBookLending: $limitedBookLending, lendingBook: $lendingBook}';
+    return 'Member{fullName: $fullName, obfuscated: $obfuscated, id: $id, limitedBookLending: $limitedBookLending, lendingBook: $lendingBook}';
   }
 }

@@ -22,7 +22,7 @@ class Course {
       required int unitCount,
       required CourseType courseType}) {
     if (courseType == CourseType.public) {
-      return PublicCourse(title: title, id: id, unitCount: unitCount);
+      return GeneralCourse(title: title, id: id, unitCount: unitCount);
     } else {
       return ProfessionalCourse(title: title, id: id, unitCount: unitCount);
     }
