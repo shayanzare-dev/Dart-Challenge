@@ -1,8 +1,9 @@
 class Location {
+  static int idCount = 0;
   final String title;
   final int id;
 
-  const Location({required this.title, required this.id});
+  Location({required this.title}) : id = ++idCount;
 
   @override
   String toString() {

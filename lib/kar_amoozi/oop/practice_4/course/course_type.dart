@@ -1,4 +1,0 @@
-enum CourseType {
-  public,
-  Professional;
-}
