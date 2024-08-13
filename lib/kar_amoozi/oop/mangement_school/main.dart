@@ -1,0 +1,10 @@
+import 'school.dart';
+
+void main() {
+  final School school = School(name: 'shahid torabi', id: 1);
+  school.addStudent(fullName: 'arman zare', nationalCode: 54801213);
+  school.addTeacher(fullName: 'shayan zare', nationalCode: 54801715);
+  school.addTeacher(fullName: 'hossein zare', nationalCode: 5480171);
+  school.addCourseForTeaching(courseId: 2, teacherId: 1);
+  print(school.teachers);
+}
