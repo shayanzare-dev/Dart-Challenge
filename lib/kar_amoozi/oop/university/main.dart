@@ -3,7 +3,7 @@ import 'student_cost_semseter.dart';
 import 'university.dart';
 
 void main() {
-  final Location location = Location(title: 'shiraz');
+  final Location location = Location(title: 'shiraz', id: 1);
   final University university =
       University(location: location, name: 'zand', id: 1);
 
@@ -27,9 +27,23 @@ void main() {
       courseUnitCount: 2,
       courseTitle: 'programming',
       courseId: 3);
-  university.addStudentToCourseById(semesterId: 2, studentId: 1, courseId: 3);
-  final StudentCostSemester studentCostSemester =
-      StudentCostSemester(university: university);
+  university.addStudentToCourseById(semesterId: 2, studentId: 12, courseId: 3);
 
-  studentCostSemester.cast(studentId: 1, semesterId: 2);
+  university.addGeneralCourseToSemesterById(
+      semesterId: 2,
+      courseUnitCount: 3,
+      courseTitle: 'second math',
+      courseId: 6);
+  university.addGeneralCourseToSemesterById(
+      semesterId: 1, courseUnitCount: 5, courseTitle: 'babee', courseId: 5);
+  university.addProfessionalCourseToSemesterById(
+      semesterId: 3,
+      courseUnitCount: 3,
+      courseTitle: 'second programming course',
+      courseId: 7);
+  university.addStudentToCourseById(semesterId: 3, studentId: 12, courseId: 7);
+
+  final costStudent studentCostSemester = costStudent(university: university);
+
+  studentCostSemester.cost(studentId: 12, semesterId: 3);
 }

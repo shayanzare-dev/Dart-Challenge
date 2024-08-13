@@ -109,6 +109,33 @@ class University {
     }
   }
 
+  int getSemesterInUniversity({required int semesterId}) {
+    final int semesterIndex =
+        _semesters.indexWhere((element) => element.id == semesterId);
+    return semesterIndex;
+  }
+
+  int getStudentInUniversity({required int studentId}) {
+    final int studentIndex =
+        _students.indexWhere((element) => element.id == studentId);
+    return studentIndex;
+  }
+
+  bool isStudentSameUniversityLocation({required int studentId}) {
+    int studentIndex = getStudentInUniversity(studentId: studentId);
+    if (studentIndex != -1) {
+      final Student student = _students[studentIndex];
+      if (student.location == location) {
+        return true;
+      } else {
+        print('location is not same');
+      }
+    } else {
+      print('not find student!');
+    }
+    return false;
+  }
+
   @override
   String toString() {
     return 'University{location: $location, name: $name, id: $id}';

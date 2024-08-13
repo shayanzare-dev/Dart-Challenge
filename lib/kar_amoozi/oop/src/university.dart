@@ -3,11 +3,6 @@ import 'semester.dart';
 import 'student.dart';
 import 'course/course.dart';
 
-/// semester id
-/// course id
-/// student id
-/// result step =>
-
 class University {
   final Location location;
   final List<Semester> _semesters = [];
@@ -44,25 +39,6 @@ class University {
     _semesters.add(newSemester);
   }
 
-  void addCourseToSemesterById({
-    required int semesterId,
-    required int courseId,
-    required int courseUnitCount,
-    required String courseTitle,
-  }) {
-    final int semesterIndex =
-        _semesters.indexWhere((element) => element.id == semesterId);
-
-    final isSemesterFound = semesterIndex != -1;
-
-    if (isSemesterFound) {
-      _semesters[semesterIndex].addGeneralCourse(
-        id: courseId,
-        unitCount: courseUnitCount,
-        title: courseTitle,
-      );
-    }
-  }
 
   void addStudentToCourse({
     required int studentId,
@@ -80,7 +56,7 @@ class University {
     final isStudentFound = studentIndex != -1;
 
     if (isStudentFound && isSemesterFound) {
-      final Semester semester = _semesters[semesterIndex];
+      final semester = _semesters[semesterIndex];
 
       final Course? course = semester.getCourseById(
         courseId: courseId,
@@ -94,8 +70,27 @@ class University {
 
   List<Semester> get semesters => _semesters;
 
+  bool isStudentInUniversity({required int studentId}) {
+    return _students.any((element) => element.id == studentId);
+  }
+
+  bool isSemesterInUniversity({required int semesterId}) {
+    return _semesters.any((element) => element.id == semesterId);
+  }
+
+  bool isStudentInSameLocation({required int studentId}) {
+    if (isStudentInUniversity(studentId: studentId)) {
+      final Student student =
+          _students.firstWhere((element) => element.id == studentId);
+
+      return location.id == student.location.id;
+    } else {
+      return false;
+    }
+  }
+
   @override
   String toString() {
-    return 'University{name: $name}';
+    return 'University{name: $name, $_students}';
   }
 }

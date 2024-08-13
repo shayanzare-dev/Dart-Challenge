@@ -1,91 +1,84 @@
 import 'course/course.dart';
-import 'location.dart';
 import 'semester.dart';
-import 'student.dart';
 import 'university.dart';
 
-class StudentCostSemester {
-  /// I must calculate with  student id , semester id, and go
-  /// to course list and calculate any unit code
-  /// student id
-  // final int studentId;
-  //
+class costStudent {
   final University university;
 
-  const StudentCostSemester({
+  const costStudent({
     required this.university,
   });
 
-  /*bool verifyStudent() {
-    if (studentIndex != -1) {
-      return true;
+  int calculateBaseUnitPrice({required int studentId}) {
+    int baseUnitPrice;
+    final bool isSame =
+    university.isStudentSameUniversityLocation(studentId: studentId);
+    if (isSame) {
+      baseUnitPrice = 50;
+    } else {
+      baseUnitPrice = 130;
     }
-    return false;
+
+    return baseUnitPrice;
   }
 
-  bool verifySemester(
-      {required int semesterId, required University university}) {
-
-    if (semesterIndex != -1) {
-      return true;
-    }
-    return false;
-  }*/
-
-  void cast({
+  void cost({
     required int studentId,
     required int semesterId,
   }) {
-    final int studentIndex = this
-        .university
-        .students
-        .indexWhere((element) => element.id == studentId);
+    final bool verifyStudent =
+        university.getStudentInUniversity(studentId: studentId) != -1;
+    final bool verifySemester =
+        university.getSemesterInUniversity(semesterId: semesterId) != -1;
 
-    final int semesterIndex = this
-        .university
-        .semesters
-        .indexWhere((element) => element.id == semesterId);
+    int semesterIndex =
+    university.getSemesterInUniversity(semesterId: semesterId);
 
-    if (semesterIndex != -1 && studentIndex != -1) {
-      final Semester semester = this.university.semesters[semesterIndex];
-      final List<Course> courseList = semester.courses;
-      // todo(sas)
-      // courseList[studentIndex].addStudent(Student(
-      //     name: 'shayan zare', id: 1, location: Location(title: 'shiraz')));
-      int allUnit = _getSumCourseUnit(courseList: courseList);
-      int resultSemesterPrice = _calculateCoursePrice(
-          courseList: courseList, studentIndex: studentIndex);
-      if (allUnit <= 7) {
-        resultSemesterPrice += 100;
+    if (verifyStudent && verifySemester) {
+      final Semester semester = university.semesters[semesterIndex];
+      print(semester);
+      final List<Course> courses =
+      _generateNewCourses(courses: semester.courses, studentId: studentId);
+
+      if (courses.isNotEmpty) {
+        int sumCourseUnit = _getSumCourseUnit(courses: courses);
+        int totalCourseUnit = _calculateCoursePrice(
+            courses: courses,
+            basePrice: calculateBaseUnitPrice(studentId: studentId));
+        print('total course unit price student => $totalCourseUnit');
+      } else {
+        print('courses is empty');
       }
-      if (allUnit >= 8) {
-        // todo(SHAYAN ZARE);
-      }
-      print('result price at this semester => $resultSemesterPrice');
+      print('course list => ${courses}');
     } else {
-      print('not found that id in ');
+      print('not found that id in them');
     }
   }
 
-  int _getSumCourseUnit({required List<Course> courseList}) {
-    int sum = 0;
-    courseList.forEach((element) {
-      sum += element.unitCount;
-    });
-    return sum;
+  List<Course> _generateNewCourses(
+      {required List<Course> courses, required int studentId}) {
+    final List<Course> newCourses = [];
+    for (final Course course in courses) {
+      if (course.students.any((student) => student.id == studentId)) {
+        newCourses.add(course);
+      }
+    }
+    return newCourses;
+  }
+
+  int _getSumCourseUnit({required List<Course> courses}) {
+    int sumCourseUnitCode = 0;
+    for (final Course course in courses) {
+      sumCourseUnitCode += course.unitCount;
+    }
+    return sumCourseUnitCode;
   }
 
   int _calculateCoursePrice(
-      {required List<Course> courseList, required int studentIndex}) {
+      {required List<Course> courses, required int basePrice}) {
     int sum = 0;
-    courseList.forEach((element) {
-      if (this.university.location.title ==
-          element.students[studentIndex].location.title) {
-        sum += element.unitCount * 75;
-      } else {
-        sum += element.unitCount * 125;
-        print('not found the similar location');
-      }
+    courses.forEach((course) {
+      sum += course.unitCount * basePrice * course.costFactor;
     });
     return sum;
   }

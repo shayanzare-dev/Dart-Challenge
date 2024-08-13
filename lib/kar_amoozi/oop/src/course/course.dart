@@ -13,12 +13,17 @@ abstract class Course {
     required this.unitCount,
   });
 
-  void addStudent(Student student) {
+  void addStudent(Student student){
     _students.add(student);
   }
 
+  bool isStudentInCourse({required int studentId}) {
+    return _students.any((element) => element.id == studentId);
+  }
+
+
   @override
   String toString() {
-    return 'Course{title: $title, id: $id, unitCount: $unitCount , cost factor:$costFactor}';
+    return 'Course{title: $title, id: $id, unitCount: $unitCount, $_students}';
   }
 }

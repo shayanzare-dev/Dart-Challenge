@@ -39,6 +39,6 @@ class Semester {
 
   @override
   String toString() {
-    return 'Semester{id: $id, title: $title}';
+    return 'Semester{id: $id, title: $title, courses: $courses}';
   }
 }

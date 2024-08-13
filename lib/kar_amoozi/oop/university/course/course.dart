@@ -17,6 +17,6 @@ abstract class Course {
 
   @override
   String toString() {
-    return 'Course{title: $title, id: $id, unitCount: $unitCount}';
+    return 'Course{title: $title, id: $id, unitCount: $unitCount, costFactor: $costFactor, students: $students}';
   }
 }
