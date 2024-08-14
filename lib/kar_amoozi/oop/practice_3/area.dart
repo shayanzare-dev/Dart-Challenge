@@ -4,7 +4,7 @@ class Area {
   final double area;
   final List<EmptySpace> emptySpace;
 
- const Area({required this.area, required this.emptySpace});
+  const Area({required this.area, required this.emptySpace});
 
   double calculate() {
     double sum = 0;
