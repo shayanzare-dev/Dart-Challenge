@@ -14,4 +14,9 @@ class Exam {
       required this.score})
       : id = ++countId,
         assert(score <= 20 && score >= 0, 'invalid score(0 ta 20)');
+
+  @override
+  String toString() {
+    return 'Exam{id: $id, courseName: $courseName, studentNationalCode: $studentNationalCode, teacherNationalCode: $teacherNationalCode, score: $score}';
+  }
 }

@@ -8,10 +8,9 @@ class Student {
   final int nationalCode;
   final List<Course> courses;
 
-  Student(
-      {required this.fullName,
-      required this.nationalCode,
-      required this.courses})
+  Student({required this.fullName,
+    required this.nationalCode,
+    required this.courses})
       : id = ++countId;
 
   @override

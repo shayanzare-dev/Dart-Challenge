@@ -11,4 +11,5 @@ void main() {
   school.addStudentToCourseById(courseId: 1, studentId: 2);
   print(school.teachers);
   school.showCourses();
+  school.addTeacher(fullName: 'armin', nationalCode: 09023);
 }

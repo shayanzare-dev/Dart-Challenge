@@ -67,8 +67,8 @@ class School {
   }
 
   int getTeacherIndex({required int teacherId}) {
-    final teacherIndex =
-    _teachers.indexWhere((element) => element.id == teacherId);
+    final int teacherIndex =
+        _teachers.indexWhere((element) => element.id == teacherId);
     if (teacherIndex != -1) {
       return teacherIndex;
     } else {
@@ -79,7 +79,7 @@ class School {
 
   int getCourseIndex({required int courseId}) {
     final courseIndex =
-    _teachers.indexWhere((element) => element.id == courseId);
+        _teachers.indexWhere((element) => element.id == courseId);
     if (courseIndex != -1) {
       return courseIndex;
     } else {
@@ -90,7 +90,7 @@ class School {
 
   int getStudentIndex({required int studentId}) {
     final studentIndex =
-    _teachers.indexWhere((element) => element.id == studentId);
+        _teachers.indexWhere((element) => element.id == studentId);
     if (studentIndex != -1) {
       return studentIndex;
     } else {
@@ -114,10 +114,11 @@ class School {
     }
   }
 
-  void addExamToCourse({required int courseId,
-    required int teacherId,
-    required int studentId,
-    required int score}) {
+  void addExamToCourse(
+      {required int courseId,
+      required int teacherId,
+      required int studentId,
+      required int score}) {
     final int teacherIndex = getTeacherIndex(teacherId: teacherId);
 
     final int courseIndex = getCourseIndex(courseId: courseId);
@@ -155,11 +156,5 @@ class School {
     for (int i = 0; i < courses.length; i++) {
       print('${i + 1}-${courses[i]}');
     }
-  }
-
-  void pointAvg({required int studentId}) {
-    final int studentIndexInExam = _exams.indexWhere((element) =>
-    element.studentNationalCode ==);
-    if (studentIndex != -1) {}
   }
 }
