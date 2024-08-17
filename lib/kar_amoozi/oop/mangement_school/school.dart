@@ -26,6 +26,12 @@ class School {
 
   School({required this.name, required this.id});
 
+  void showTeachers() {
+    teachers.forEach((element) {
+      print(element);
+    });
+  }
+
   bool _isNationCodeStudentNotRepeat({required int nationalCode}) {
     if (_students.any((element) => element.nationalCode != nationalCode)) {
       return true;
@@ -35,8 +41,7 @@ class School {
 
   void addStudent({required String fullName, required int nationalCode}) {
     if (_isNationCodeStudentNotRepeat(nationalCode: nationalCode)) {
-      _students.add(Student(
-          fullName: fullName, nationalCode: nationalCode, courses: courses));
+      _students.add(Student(fullName: fullName, nationalCode: nationalCode));
     } else {
       print('your student was added');
     }
@@ -99,19 +104,40 @@ class School {
     }
   }
 
-  void addCourseForTeaching({required int courseId, required int teacherId}) {
-    final int teacherIndex = getTeacherIndex(teacherId: teacherId);
-
-    final int courseIndex = getCourseIndex(courseId: courseId);
-
-    if (teacherIndex != -1 && courseIndex != -1) {
+  void addCourseForTeaching({
+    required int courseId,
+    required int teacherId,
+  }) {
+    if (checkTeacherIdValid(teacherId: teacherId) &&
+        checkCourseIdValid(courseId: courseId)) {
+      final int teacherIndex = getTeacherIndex(teacherId: teacherId);
+      final int courseIndex = getCourseIndex(courseId: courseId);
       final Teacher teacher = _teachers[teacherIndex];
       if (_checkLimitedCourse(teacher: teacher)) {
         teacher.addCourse(courses[courseIndex]);
       }
-    } else {
-      print('not find teacher or course!');
     }
+  }
+
+  bool checkTeacherIdValid({required int teacherId}) {
+    if (getTeacherIndex(teacherId: teacherId) != -1) {
+      return true;
+    }
+    return false;
+  }
+
+  bool checkCourseIdValid({required int courseId}) {
+    if (getCourseIndex(courseId: courseId) != -1) {
+      return true;
+    }
+    return false;
+  }
+
+  bool checkStudentIdValid({required int studentId}) {
+    if (getStudentIndex(studentId: studentId) != -1) {
+      return true;
+    }
+    return false;
   }
 
   void addExamToCourse(
@@ -119,17 +145,18 @@ class School {
       required int teacherId,
       required int studentId,
       required int score}) {
-    final int teacherIndex = getTeacherIndex(teacherId: teacherId);
+    if (checkCourseIdValid(courseId: courseId) &&
+        checkStudentIdValid(studentId: studentId) &&
+        checkTeacherIdValid(teacherId: teacherId)) {
+      final int teacherIndex = getTeacherIndex(teacherId: teacherId);
 
-    final int courseIndex = getCourseIndex(courseId: courseId);
+      final int courseIndex = getCourseIndex(courseId: courseId);
 
-    final int studentIndex = getStudentIndex(studentId: studentId);
-
-    if (teacherIndex != -1 && courseIndex != -1 && studentIndex != -1) {
+      final int studentIndex = getStudentIndex(studentId: studentId);
       final Teacher teacher = _teachers[teacherIndex];
 
       final Student student = _students[studentIndex];
-      final Course course = courses[teacherIndex];
+      final Course course = courses[courseIndex];
       final Exam exam = Exam(
           courseName: course.title,
           studentNationalCode: student.nationalCode,
@@ -140,13 +167,13 @@ class School {
     }
   }
 
-  void addStudentToCourseById({required int courseId, required int studentId}) {
-    final int studentIndex = getStudentIndex(studentId: studentId);
-    final int courseIndex = getCourseIndex(courseId: courseId);
-
-    if (studentIndex != -1 && courseIndex != -1) {
-      final Course course = _courses[courseIndex];
-      course.addStudent(_students[studentIndex]);
+  void addCourseToStudentById({required int courseId, required int studentId}) {
+    if (checkStudentIdValid(studentId: studentId) &&
+        checkCourseIdValid(courseId: courseId)) {
+      final int studentIndex = getStudentIndex(studentId: studentId);
+      final int courseIndex = getCourseIndex(courseId: courseId);
+      final Student student = _students[studentIndex];
+      student.addCourse(_courses[courseIndex]);
     } else {
       print('not found course id or student id');
     }
@@ -156,5 +183,51 @@ class School {
     for (int i = 0; i < courses.length; i++) {
       print('${i + 1}-${courses[i]}');
     }
+  }
+
+  void showStudents() {
+    for (int i = 0; i < students.length; i++) {
+      print('${i + 1}-${students[i]}');
+    }
+  }
+
+  void showExamsFromCourseById({required int courseId}) {
+    if (checkCourseIdValid(courseId: courseId)) {
+      final int courseIndex = getCourseIndex(courseId: courseId);
+      print(_courses[courseIndex].exams);
+    }
+  }
+
+  void showTeacherExamsById(
+      {required int courseId, required int teacherNationalCode}) {
+    if (checkCourseIdValid(courseId: courseId)) {
+      final List<Exam> exams =
+          _courses[getCourseIndex(courseId: courseId)].exams;
+      for (final Exam exam in exams) {
+        if (exam.teacherNationalCode == teacherNationalCode) {
+          print('${exam.courseName} => ${exam.score}');
+        }
+      }
+    }
+  }
+
+  void getAvgStudentScoreById(
+      {required int nationalCode, required String fullName}) {
+    final int studentIndex = _students.indexWhere((element) =>
+        (element.fullName == fullName) && element.nationalCode == nationalCode);
+    if (studentIndex != -1) {
+      print(_students[studentIndex].getAvg());
+    }
+  }
+
+  void showStrongToWeakStudentsScoreAvg() {
+    Map<String, double> scores = {};
+    for (final Student student in _students) {
+      scores.addEntries([MapEntry(student.fullName, student.getAvg())]);
+    }
+    var sortedEntries = scores.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value)); // مرتب‌سازی بر اساس مقدارها
+    Map<String, double> sortedMap = Map.fromEntries(sortedEntries);
+    print(sortedMap);
   }
 }
